@@ -2,12 +2,14 @@ package com.javaex.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -74,9 +76,9 @@ public class UserController {
 		//현재 사용 중인 세션에 저장된 데이터를 삭제하고, 해당 세션을 더 이상 사용할 수 없게 
 		return "redirect:/main";
 	}
-	//회원정보 수정
+	//회원정보 수정폼
 	@RequestMapping(value = "/user/modifyForm", method = {RequestMethod.GET, RequestMethod.POST})
-	public String modifyForm(HttpSession session, Model model) {
+	public String modifyForm(HttpSession session, Model model) {//
 		System.out.println("UserController.modifyForm()");
 		UserVo authUser = (UserVo)session.getAttribute("authUser");//횡변환 한번
 		int no = authUser.getNo();//authUser의 no가져와서 int no에 저장
@@ -85,7 +87,16 @@ public class UserController {
 		model.addAttribute("userVo", userVo);//request "userVo"
 		return "/WEB-INF/views/user/modifyForm.jsp";//forward
 	}
-	
+	//회원정보 수정
+	@RequestMapping(value = "/user/modify", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify(HttpSession session, @ModelAttribute UserVo userVo) {//우리가 만든이름이랑 vo이름이랑 같고, value에 바뀐값을 넣을거?
+	    System.out.println("UserController.modify()" + userVo);
+        UserVo authUser =  (UserVo)session.getAttribute("authUser");
+        authUser.setName(userVo.getName());
+        int no = authUser.getNo();
+		return "redirect:/main";
+	}
+	//
 	
 	
 }

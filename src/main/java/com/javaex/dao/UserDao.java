@@ -35,5 +35,10 @@ public class UserDao {
 		UserVo userVo = sqlSession.selectOne("user.SelectUserByNo",no);//"안의 값이 쿼리id로 옴?" 쿼리값저장해서 리턴주기
 		return userVo;
 	}
-	
+	//회원정보 수정
+	public int userUpdate(UserVo userVo) {
+	    System.out.println("UserDao.updateUser()" + userVo);
+	    int count = sqlSession.update("user.userUpdate", userVo);
+	    return count;
+	}
 }

@@ -38,8 +38,15 @@
 			where no =#{no}
 		]]>
 	</select>
-
-
+	<!-- 회원정보 수정 -->
+	<update id="userUpdate" parameterType="com.javaex.vo.UserVo">
+	<![CDATA[
+		update users set password = #{password},
+                 			name = #{name},
+                 			gender = #{gender}
+    	where no = #{no} 
+	  ]]>
+	</update>
 
 </mapper>
 

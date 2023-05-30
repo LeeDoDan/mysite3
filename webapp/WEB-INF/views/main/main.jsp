@@ -17,15 +17,7 @@
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<c:import url ="/WEB-INF/views/include/nav.jsp"/>
 		<!-- //nav -->
 
 		<!-- aside없음 -->
@@ -36,7 +28,7 @@
 
 			<div id="index"> 
 			
-				<img id="profile-img" src=" ${pageContext.request.contextPath}/assets/image/profile.jpg">
+				<img id="profile-img" src=" ${pageContext.request.contextPath}/assets/image/db.jpg">
 				
 				<div id="greetings">
 					<p class="text-xlarge">
@@ -54,7 +46,7 @@
 						<br>
 						(자유롭게 꾸며보세요!!)<br>
 						<br><br>
-						<a class="" href="">[방명록에 글 남기기]</a>
+						<a class="" href="${pageContext.request.contextPath}/guestbook/addList">[방명록에 글 남기기]</a>
 					</p>	
 				</div>
 				<!-- //greetings -->

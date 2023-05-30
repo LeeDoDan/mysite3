@@ -17,15 +17,7 @@
 		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<c:import url ="/WEB-INF/views/include/nav.jsp"/>
 		<!-- //nav -->
 
 		<div id="aside">
@@ -55,7 +47,7 @@
 
 			<div id="user">
 				<div id="modifyForm">
-					<form action="" method="">
+					<form action="${pageContext.request.contextPath}/user/modify" method="get">
 
 						<!-- 아이디 -->
 						<div class="form-group">
@@ -80,17 +72,17 @@
 							<span class="form-text">성별 ${requestScope.userVo.gender}</span> 
 							<c:if test="${ requestScope.userVo.gender == 'male'}">
 								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="gender" value="checked"  checked="checked"> 
+								<input type="radio" id="rdo-male" name="gender" value="male"  checked="checked"> 
 							
 								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="gender" value="" > 
+								<input type="radio" id="rdo-female" name="gender" value="female" > 
 							</c:if>
 							<c:if test="${ requestScope.userVo.gender == 'female'}">
 								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="gender" value="" > 
+								<input type="radio" id="rdo-male" name="gender" value="male" > 
 							
 								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="gender" value="" checked="checked"> 
+								<input type="radio" id="rdo-female" name="gender" value="female" checked="checked"> 
 							</c:if>
 						</div>
 

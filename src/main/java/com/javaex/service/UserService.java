@@ -30,4 +30,10 @@ public class UserService {
 		UserVo userVo = userDao.selectUser(no);
 		return userVo;
 	}
+	//회원정보 수정
+	public int modify(UserVo userVo) {
+		System.out.println("UserService.modufy()"+userVo);
+		int count =userDao.userUpdate(userVo);
+		return count;
+	}
 }
