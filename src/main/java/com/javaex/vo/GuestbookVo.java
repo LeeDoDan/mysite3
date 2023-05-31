@@ -1,14 +1,16 @@
 package com.javaex.vo;
 
+import java.util.Date;
+
 public class GuestbookVo {
 	//필드
 	private int no;
 	private String name;
 	private String password;
 	private String content;
-	private int regDate;
+	private String regDate;
 	//생성자
-	public GuestbookVo(int no, String name, String password, String content, int regDate) {
+	public GuestbookVo(int no, String name, String password, String content, String regDate) {
 		super();
 		this.no = no;
 		this.name = name;
@@ -44,10 +46,10 @@ public class GuestbookVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(int regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	//메서드 일반

@@ -26,7 +26,7 @@ public class UserController {
 	@RequestMapping(value="/user/joinForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
 		System.out.println("UserController.joinForm()");
-		return "/WEB-INF/views/user/joinForm.jsp";
+		return "user/joinForm";
 	}
 	//회원가입
 	@RequestMapping(value = "/user/join", method = {RequestMethod.GET, RequestMethod.POST})
@@ -45,7 +45,7 @@ public class UserController {
 	@RequestMapping(value = "/user/loginForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String loginForm() {
 		System.out.println("UserController.loginForm()");
-		return "/WEB-INF/views/user/loginForm.jsp";
+		return "user/loginForm";
 	}
 	//로그인
 	@RequestMapping(value = "/user/login", method = {RequestMethod.GET, RequestMethod.POST})
@@ -85,7 +85,7 @@ public class UserController {
 		UserVo userVo = userService.modifyForm(no);//userService에서 no불러오기
 		//((UserVo)session.getAttribute("authUser")).getNo();//나중에 잘해지면 이렇게 한번에 !!
 		model.addAttribute("userVo", userVo);//request "userVo"
-		return "/WEB-INF/views/user/modifyForm.jsp";//forward
+		return "user/modifyForm";//forward
 	}
 	//회원정보 수정
 	@RequestMapping(value = "/user/modify", method = {RequestMethod.GET, RequestMethod.POST})

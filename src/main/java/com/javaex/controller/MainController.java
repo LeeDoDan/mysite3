@@ -14,7 +14,7 @@ public class MainController {
 	public String main() {
 		System.out.println("MainController.main()");
 		
-		return "/WEB-INF/views/main/main.jsp";
+		return "main/main";
 	}
 
 }
