@@ -14,15 +14,15 @@ public class BoardDao {
 	private SqlSession sqlSession;
 	
 	//게시판 리스트
-	public List<BoardVo> selectList() {
+	public List<BoardVo> selectList(String keyword) {
 		System.out.println("BoardDao.selectList()");
-		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
-		return boardList;
-	}
-	//게시판 키워드 하나 넘기기
-	public List<BoardVo> selectList2(String keyword) {
-		System.out.println("BoardDao.selectList2()");
 		List<BoardVo> boardList = sqlSession.selectList("board.selectList2",keyword);
 		return boardList;
 	}
+//	//게시판 키워드 하나 넘기기
+//	public List<BoardVo> selectList2(String keyword) {
+//		System.out.println("BoardDao.selectList2()");
+//		List<BoardVo> boardList = sqlSession.selectList("board.selectList2",keyword);
+//		return boardList;
+//	}
 }

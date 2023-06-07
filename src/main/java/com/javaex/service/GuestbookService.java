@@ -32,5 +32,17 @@ public class GuestbookService {
 		System.out.println("GuestbookService.addGuest()");
 		guestbookDao.deleteGuest(guestbookVo);
 	}
+	//ajax 방명록 등록(insert) 떄 사용
+	public GuestbookVo addGuset(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookService.addGuest()");
+		//글 등록 no 확인
+		System.out.println(guestbookVo);
+		int count = guestbookDao.insertSelectKey(guestbookVo);
+		int no = guestbookVo.getNo();
+		//no 글 가져오기
+		GuestbookVo guestVo =  guestbookDao.selectGuest(no);
+		return guestVo;
+	}
+	
 	
 }

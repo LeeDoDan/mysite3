@@ -14,6 +14,28 @@
 		<!-- //header -->
 		<c:import url ="/WEB-INF/views/include/nav.jsp"/>
 		<!-- //nav -->
+	<div id="aside">
+		<h2>방명록</h2>
+		<ul>
+			<li>일반방명록</li>
+			<li>ajax방명록</li>
+		</ul>
+	</div>
+	<!-- //aside -->
+	<div id="content">
+
+		<div id="content-head">
+			<h3>일반방명록</h3>
+			<div id="location">
+				<ul>
+					<li>홈</li>
+					<li>방명록</li>
+					<li class="last">일반방명록</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!-- //content-head -->
 	<form action="${pageContext.request.contextPath}/guestbook/add" method="get">
 		<table border="1" width="510px">
 			<tr>
@@ -27,7 +49,7 @@
 				<td colspan="4"><button type="submit">등록</button></td>
 			</tr>
 		</table>
-		<input type="text" name="" value="">
+		<input type="hidden" name="" value="">
 	</form>
 	<br>
 

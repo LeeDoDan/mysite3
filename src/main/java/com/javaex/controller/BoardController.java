@@ -23,19 +23,19 @@ public class BoardController {
 			Model model) {//파라미터에 없는데 파라미터에 받은거처럼의 효과? 넘긴거있음 그거나오고 안넘기면 디폴트값나오고
 		System.out.println("BoardController.list()");
 		System.out.println(keyword);
-		List<BoardVo> boardList = boardService.getList2(keyword);
+		List<BoardVo> boardList = boardService.getList(keyword);
 		model.addAttribute("boardList",boardList);
 		return "board/list";
 	}
 	
-	//게시판 키워드 하나 넘기기
-	@RequestMapping(value="/board/list2", method = {RequestMethod.GET, RequestMethod.POST})
-	public String list2(@RequestParam(value="keyword",required = false, defaultValue = " ") String keyword,
-			Model model) {//키워드 하나 받아야해
-		System.out.println("BoardController.list2()");
-		List<BoardVo> boardList = boardService.getList2(keyword);
-		System.out.println(boardList);
-		model.addAttribute("boardList", boardList);
-		return "board/list";
-	}
+//	//게시판 키워드 하나 넘기기
+//	@RequestMapping(value="/board/list2", method = {RequestMethod.GET, RequestMethod.POST})
+//	public String list2(@RequestParam(value="keyword",required = false, defaultValue = " ") String keyword,
+//			Model model) {//키워드 하나 받아야해
+//		System.out.println("BoardController.list2()");
+//		List<BoardVo> boardList = boardService.getList2(keyword);
+//		System.out.println(boardList);
+//		model.addAttribute("boardList", boardList);
+//		return "board/list";
+//	}
 }

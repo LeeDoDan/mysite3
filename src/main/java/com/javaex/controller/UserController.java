@@ -2,7 +2,6 @@ package com.javaex.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
+import com.javaex.vo.JsonResult;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -36,7 +37,7 @@ public class UserController {
 		//count = 0;
 		//System.out.println(count);
 		if(count>0) {
-			return "/WEB-INF/views/user/joinOk.jsp";
+			return "/user/joinOk";
 		}else{
 			return "redirect:/user/joinForm";
 		}
@@ -96,7 +97,28 @@ public class UserController {
         int no = authUser.getNo();
 		return "redirect:/main";
 	}
-	//
+	
+	//회원가입 id체크
+	@ResponseBody
+	@RequestMapping(value = "/user/idcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	public JsonResult idcheck(@RequestParam("id") String id) {	//항상 String이아님
+		System.out.println("UserController.idcheck()");
+		boolean data =userService.idcheck(id);	//두개밖에없어서 그러지 꽉차면 복잡했다
+		JsonResult jsonResult = new JsonResult();
+		//gs 메서드 사용해서 할때 setter를 넣으면 자꾸 멀 넣으려하고 잘못될 확률높으니 이거뺼꺼양
+		//성공일때
+		//jsonResult.setResult("success"); 
+		//jsonResult.setData(data);
+		//실패일때
+		//jsonResult.setResult("fail");
+		//jsonResult.setFailMsg("통신오류");
+		
+		jsonResult.success(data);
+		//jsonResult.fail("통신오류");
+		
+		System.out.println(jsonResult);
+		return jsonResult;	//얘 규칙은 그냥 jsp파일 찾을테니 json하려면 다른거를..
+	}
 	
 	
 }

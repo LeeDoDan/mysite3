@@ -14,17 +14,17 @@ public class BoardService {
 	private BoardDao boardDao;
 
 	//게시판 리스트
-	public List<BoardVo> getList() {
+	public List<BoardVo> getList(String keyword) {
 		System.out.println("BoardService.getList()");
 		//Dao selectList()호출
-		List<BoardVo>boardList = boardDao.selectList();
+		List<BoardVo>boardList = boardDao.selectList(keyword);
 		return boardList;
 	}
-	//게시판 키워드 하나 넘기기
-	public List<BoardVo> getList2(String keyword) {
-		System.out.println("BoardService.getList2()");
-		List<BoardVo> boardList = boardDao.selectList2(keyword);
-		return boardList;
-	}
+//	//게시판 키워드 하나 넘기기
+//	public List<BoardVo> getList2(String keyword) {
+//		System.out.println("BoardService.getList2()");
+//		List<BoardVo> boardList = boardDao.selectList2(keyword);
+//		return boardList;
+//	}
 	
 }

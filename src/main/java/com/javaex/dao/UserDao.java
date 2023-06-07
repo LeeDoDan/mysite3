@@ -41,4 +41,10 @@ public class UserDao {
 	    int count = sqlSession.update("user.userUpdate", userVo);
 	    return count;
 	}
+	//회원가입 id체크
+	public UserVo selectUser(String id) {
+		System.out.println("UserDao.selectUser()"+id);
+		UserVo userVo= sqlSession.selectOne("user.selectUserById",id);
+		return userVo;	
+	}
 }
