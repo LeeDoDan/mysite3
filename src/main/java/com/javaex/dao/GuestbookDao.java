@@ -34,8 +34,6 @@ public class GuestbookDao {
 	//방명록 등록
 	public int insertGuest(GuestbookVo guestbookVo) {
 		System.out.println("GuestbookDao.insertGuest()");
-
-		
 		int count = sqlSession.insert("guestbook.insertGuest",guestbookVo);
         return count;
 	}

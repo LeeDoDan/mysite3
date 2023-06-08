@@ -49,7 +49,7 @@
 				<td colspan="4"><button type="submit">등록</button></td>
 			</tr>
 		</table>
-		<input type="hidden" name="" value="">
+		<input type="hidden" name="no" value="no">
 	</form>
 	<br>
 

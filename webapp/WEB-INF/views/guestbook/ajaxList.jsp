@@ -25,15 +25,7 @@
         <c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/guestbook/addList">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="${pageContext.request.contextPath}/board/list">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<c:import url ="/WEB-INF/views/include/nav.jsp"/>
 		<!-- //nav -->
 
 		<div id="aside">
@@ -244,7 +236,7 @@ $("#btnSubmit").on("click", function(){
 		
 		url : "${pageContext.request.contextPath }/api/guestbook/add",		
 		type : "post",
-		contentType : "application/json",☆
+		//contentType : "application/json",//☆
 		data : guestbookVo,
 
 		dataType : "json",

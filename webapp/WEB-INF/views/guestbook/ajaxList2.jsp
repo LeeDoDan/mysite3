@@ -25,16 +25,8 @@
         <c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/guestbook/addList2">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="${pageContext.request.contextPath}/board/list">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
-		<!-- //nav -->
+		<c:import url ="/WEB-INF/views/include/nav.jsp"/>
+				<!-- //nav -->
 
 		<div id="aside">
 			<h2>방명록</h2>
@@ -180,7 +172,7 @@
 		//ajax통신 ->요청은 같은 기술 응답이 데이터만 온다
 		$.ajax({
 			
-			url : "${pageContext.request.contextPath }/api/guestbook/add",		
+			url : "${pageContext.request.contextPath }/api/guestbook/add2",		
 			type : "post",
 			contentType : "application/json",//☆
 			data : JSON.stringify(guestbookVo),
@@ -193,7 +185,7 @@
 				if(jsonResult.result == "success"){
 					//정상처리
 					
-					render(jsonResult.data); //리스트에 추가
+					render(jsonResult.data,"up"); //리스트에 추가
 					
 					//등록폼 비우기
 					$("[name='name']").val("");
@@ -208,18 +200,20 @@
 				console.error(status + " : " + error);
 			}
 	    });
-		
+	});	
 	
 	function fetchList(){//function은 정의니까
 		$.ajax({
 			
 			url : "${pageContext.request.contextPath }/api/guestbook/list",		
 			type : "post",
-			//data : guestVo,
+		
+			
 			dataType : "json",
-			success : function(jsonResult){
+			success : function(jsonResult,dir){
 				console.log(jsonResult);
 				var guestList =jsonResult.data;
+				
 				//성공시 처리해야될 코드 작성
 				for(var i = 0; i<guestList.length; i++){
 					render(guestList[i], "down");	//다 말고 i번쨰 하나만,"방향"
@@ -258,7 +252,7 @@
 		
 		if(dir == "up"){
 			$("#guestbookListArea").prepend(str);
-		}else if(dir == " down"){
+		}else if(dir == "down"){
 			$("#guestbookListArea").append(str);
 		}else{
 			console.log("방향오류");

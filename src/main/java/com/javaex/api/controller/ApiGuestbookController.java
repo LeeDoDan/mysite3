@@ -39,7 +39,7 @@ public class ApiGuestbookController {
 	//ajax 방명록 등록(등록을 하고나서 no번호를 받아 글정보를 가져옴-서비스에서 두가지 일)
 	@ResponseBody
 	@RequestMapping(value ="/api/guestbook/add",method = {RequestMethod.GET,RequestMethod.POST})
-	public JsonResult addList(@ModelAttribute GuestbookVo guestbookVo) {
+	public JsonResult add(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("ApiGuestbookController.add()");
 		GuestbookVo guestVo = guestbookService.addGuestList(guestbookVo);
 		
@@ -89,7 +89,7 @@ public class ApiGuestbookController {
 	//JSON으로 데이터 전송 후 등록
 	@ResponseBody
 	@RequestMapping(value ="/api/guestbook/add2",method = {RequestMethod.GET,RequestMethod.POST})
-	public JsonResult addList2(@RequestBody GuestbookVo guestbookVo) {//@RequestBody에서 꺼내는 !!
+	public JsonResult add2(@RequestBody GuestbookVo guestbookVo) {//@RequestBody에서 꺼내는 !!
 		System.out.println("ApiGuestbookController.add2()");
 		System.out.println(guestbookVo);
 		GuestbookVo guestVo = guestbookService.addGuestList(guestbookVo);
