@@ -13,12 +13,13 @@ import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
 
 @Controller
+@RequestMapping(value="/board")
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
 	//게시판 리스트
-	@RequestMapping(value="/board/list", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public String list(@RequestParam(value="keyword",required = false, defaultValue = " ") String keyword, 
 			Model model) {//파라미터에 없는데 파라미터에 받은거처럼의 효과? 넘긴거있음 그거나오고 안넘기면 디폴트값나오고
 		System.out.println("BoardController.list()");
@@ -38,4 +39,11 @@ public class BoardController {
 //		model.addAttribute("boardList", boardList);
 //		return "board/list";
 //	}
+	//게시판 리스트 페이징 기능 포함
+	@RequestMapping(value="/list3", method = {RequestMethod.GET, RequestMethod.POST})
+	public String list3() {
+		System.out.println("BoardControoler.list3()");
+		
+		return "board/list3";
+	}
 }
