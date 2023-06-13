@@ -1,10 +1,79 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+	
+	<!-- 게시글 전체 갯수 -->
+	<select id="totalCount" resultType="int">
+		<![CDATA[
+			select count(*)
+			from board
+		]]>
+	</select>
 
-	<!-- 게시판 리스트 -->
-	<select id="selectList" resultType="com.javaex.vo.BoardVo">
+
+	<!-- 게시판 리스트: 페이징 포함 -->
+	<select id="selectList3"  parameterType = "map" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select  ort.rn,
+			        ort.no,
+			        ort.title,
+			        ort.content,
+			        ort.hit,
+			        ort.reg_date regDate,
+			        ort.user_no,
+			        ort.name
+			from (select  rownum rn,
+			              ot.no,
+			              ot.title,
+			              ot.content,
+			              ot.hit,
+			              ot.reg_date,
+			              ot.user_no,
+			              ot.name
+				     from (select  b.no,
+				                   b.title,
+				                   b.content,
+				                   b.hit,
+				                   b.reg_date,
+				                   b.user_no,
+				                   u.name
+				           from board b, users u
+				           where b.user_no = u.no
+				           order by no desc) ot
+				     )ort
+			where rn>=#{startRnum}
+			and rn<=#{endRnum}
+		]]>	
+
+
+	</select>
+
+
+	<!-- 게시판 리스트: 검색기능 포함 -->
+	<select id="selectList2"  parameterType = "String" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			SELECT  BO.no,
+			        BO.title,
+			        BO.content,
+			        US.name,
+			        BO.hit,
+			        TO_CHAR(BO.reg_date, 'YYYY-MM-DD HH:MI') regDate,
+			        US.no userNo
+			FROM board BO, users US
+			WHERE  BO.user_no = US.no  
+		]]>	
+			<if test='aaa != "" and aaa != null' >
+				and BO.title like '%'|| #{aaa} ||'%'
+			</if>
+		<![CDATA[	
+			order by reg_date desc
+		]]>
+	</select>
+
+
+	<!-- 게시판 리스트: 검색기능 X -->
+	<select id="selectList"  resultType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			SELECT  BO.no,
 			        BO.title,
@@ -18,26 +87,20 @@
 			order by reg_date desc
 		]]>
 	</select>
-	<!-- 게시판 키워드 하나 넘기기 -->
-	<select id="selectList2" parameterType="String" resultType="com.javaex.vo.BoardVo">
-		<![CDATA[
-			SELECT  BO.no,
-			        BO.title,
-			        BO.content,
-			        US.name,
-			        BO.hit,
-			        TO_CHAR(BO.reg_date, 'YYYY-MM-DD HH:MI') regDate,
-			        US.no userNo
-			FROM board BO, users US
-			WHERE  BO.user_no = US.no 
-		]]> 
-			<if test="value !='' and value != null">
-				and BO.title like '%'||#{keyword}||'%'
-			</if>
-
-		<![CDATA[
-			order by reg_date desc
-		]]>
-	</select><!-- 공백이면 다 가져와~ -->
 	
+	
+	<!-- 글저장 -->
+	<insert id="insert" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			insert into board 
+			values ( seq_board_no.nextval, 
+					 #{title}, 
+					 #{content}, 
+					 0, 
+					 sysdate, 
+					 #{userNo} )
+		]]>
+	</insert>
+	
+
 </mapper>

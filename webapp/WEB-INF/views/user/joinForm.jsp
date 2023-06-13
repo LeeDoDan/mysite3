@@ -111,6 +111,35 @@
 
 </body>
 	<script type="text/javascript">
+	//예제
+	//원래의 태그의 기능을 사용하지 않을때
+	$("#naver").on("click", function(event){
+		event.preventDefault();	// 이벤트의 기본 동작을 취소하는 메서드
+	});
+	
+	//회원가입 버튼을 눌렀을때: 전송 submit은 form에 이벤트
+	$("#joinSubmitForm").on("click", function(){
+		console.log("전송버튼 클릭");
+		
+		var id = $("#input-uid").val();
+		if(id.length < 1){//입력안했으면
+			console.log("아이디없음");
+			return false;
+		}
+		//패스워드 체크
+		
+		//약관동의 유무
+		var agree = $("#chk-agree").is(":checked");
+		if(agree == false){
+			alert("약관에 동의해 주세요");
+			return false;
+		}
+		
+		
+		return true;
+	});
+	
+	
 		//아이디 중복체크 버튼 클릭했을때
 		$("#btnIdCheck").on("click", function(){
 			console.log("버튼 클릭");
